@@ -53,12 +53,6 @@ public class UserEntity implements Serializable {
     @NotNull
     private String salt;
 
-    @Size(max = 30)
-    private String country;
-
-    @Column(name = "aboutme", columnDefinition = "TEXT")
-    @Size(max = 50)
-    private String aboutMe;
 
     @Size(max = 30)
     private String dob;
@@ -102,13 +96,7 @@ public class UserEntity implements Serializable {
 
     public void setSalt(String salt) { this.salt = salt; }
 
-    public String getCountry() { return country; }
 
-    public void setCountry(String country) { this.country = country; }
-
-    public String getAboutMe() { return aboutMe; }
-
-    public void setAboutMe(String aboutMe) { this.aboutMe = aboutMe; }
 
     public String getDob() { return dob; }
 

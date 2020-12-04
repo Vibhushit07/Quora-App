@@ -24,9 +24,7 @@ public class CommonController {
         final UserEntity userEntity = commonBusiness.getUserDetails(userId, token[1]);
 
         UserDetailsResponse userDetailsResponse = new UserDetailsResponse();
-        userDetailsResponse.setAboutMe(userEntity.getAboutMe());
         userDetailsResponse.setContactNumber(userEntity.getContactNumber());
-        userDetailsResponse.setCountry(userEntity.getCountry());
         userDetailsResponse.setDob(userEntity.getDob());
         userDetailsResponse.setEmailAddress(userEntity.getEmail());
         userDetailsResponse.setFirstName(userEntity.getFirstName());
