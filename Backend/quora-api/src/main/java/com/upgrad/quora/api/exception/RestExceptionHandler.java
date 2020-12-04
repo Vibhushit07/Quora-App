@@ -81,5 +81,10 @@ public class RestExceptionHandler {
      * @param request  - The web request object gives access to all the request parameters.
      * @return         - ResponseEntity<ErrorResponse> type object displays error code and error message along with HttpStatus CONFLICT
      */
-
+    @ExceptionHandler(InvalidQuestionException.class)
+    public ResponseEntity<ErrorResponse> invalidQuestionException(InvalidQuestionException exc, WebRequest request) {
+        return new ResponseEntity<ErrorResponse>(
+                new ErrorResponse().code(exc.getCode()).message(exc.getErrorMessage()), HttpStatus.CONFLICT
+        );
+    }
 }
