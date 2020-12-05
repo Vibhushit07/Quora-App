@@ -319,14 +319,6 @@
           "format": "password",
           "x-obfuscated": true
         },
-        "country": {
-          "type": "string",
-          "description": "Country of the new user"
-        },
-        "aboutMe": {
-          "type": "string",
-          "description": "Details of the new user"
-        },
         "dob": {
           "type": "string",
           "description": "Date of birth of the new user"
