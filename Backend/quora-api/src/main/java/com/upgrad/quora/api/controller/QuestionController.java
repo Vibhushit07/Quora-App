@@ -5,6 +5,7 @@ import com.upgrad.quora.service.business.QuestionBusiness;
 import com.upgrad.quora.service.entity.QuestionEntity;
 import com.upgrad.quora.service.exception.AuthorizationFailedException;
 import com.upgrad.quora.service.exception.InvalidQuestionException;
+import com.upgrad.quora.service.exception.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -63,5 +64,19 @@ public class QuestionController {
         return new ResponseEntity<>(questionDeleteResponse, HttpStatus.OK);
     }
 
+    @GetMapping("question/all/{userId}")
+    private ResponseEntity<List<QuestionDetailsResponse>> getAllQuestionsByUser(@RequestHeader("authorization") final String authorization, @PathVariable("userId") final String userId) throws AuthorizationFailedException, UserNotFoundException {
+        List<QuestionEntity> list = questionBusiness.getAllQuestionsByUserId(authorization.split("Bearer ")[1], userId);
 
+        List<QuestionDetailsResponse> questions = list.stream()
+                .map(question -> {
+                    QuestionDetailsResponse q = new QuestionDetailsResponse();
+                    q.setContent(question.getContent());
+                    q.setTitle(question.getTitle());
+                    q.setId(question.getUuid());
+                    return q;
+                }).collect(Collectors.toList());
+
+        return new ResponseEntity<>(questions, HttpStatus.OK);
+    }
 }
