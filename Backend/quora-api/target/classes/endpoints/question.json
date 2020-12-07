@@ -475,6 +475,10 @@
     "QuestionRequest": {
       "type": "object",
       "properties": {
+        "title": {
+          "type": "string",
+          "description": "title of the question"
+        },
         "content": {
           "type": "string",
           "description": "content of the question"
@@ -508,6 +512,10 @@
           "type": "string",
           "description": "question uuid"
         },
+        "title": {
+          "type": "string",
+          "description": "Question content"
+        },
         "content": {
           "type": "string",
           "description": "Question content"
@@ -515,12 +523,17 @@
       },
       "required": [
         "id",
+        "title",
         "content"
       ]
     },
     "QuestionEditRequest": {
       "type": "object",
       "properties": {
+        "title": {
+          "type": "string",
+          "description": "updated title of the question"
+        },
         "content": {
           "type": "string",
           "description": "updated content of the question"

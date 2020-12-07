@@ -13,11 +13,14 @@ import javax.validation.constraints.*;
  * QuestionDetailsResponse
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2020-12-07T13:09:15.658+05:30")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2020-12-07T13:15:27.436+05:30")
 
 public class QuestionDetailsResponse   {
   @JsonProperty("id")
   private String id = null;
+
+  @JsonProperty("title")
+  private String title = null;
 
   @JsonProperty("content")
   private String content = null;
@@ -41,6 +44,27 @@ public class QuestionDetailsResponse   {
 
   public void setId(String id) {
     this.id = id;
+  }
+
+  public QuestionDetailsResponse title(String title) {
+    this.title = title;
+    return this;
+  }
+
+  /**
+   * Question content
+   * @return title
+  **/
+  @ApiModelProperty(required = true, value = "Question content")
+  @NotNull
+
+
+  public String getTitle() {
+    return title;
+  }
+
+  public void setTitle(String title) {
+    this.title = title;
   }
 
   public QuestionDetailsResponse content(String content) {
@@ -75,12 +99,13 @@ public class QuestionDetailsResponse   {
     }
     QuestionDetailsResponse questionDetailsResponse = (QuestionDetailsResponse) o;
     return Objects.equals(this.id, questionDetailsResponse.id) &&
+        Objects.equals(this.title, questionDetailsResponse.title) &&
         Objects.equals(this.content, questionDetailsResponse.content);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, content);
+    return Objects.hash(id, title, content);
   }
 
   @Override
@@ -89,6 +114,7 @@ public class QuestionDetailsResponse   {
     sb.append("class QuestionDetailsResponse {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
     sb.append("}");
     return sb.toString();

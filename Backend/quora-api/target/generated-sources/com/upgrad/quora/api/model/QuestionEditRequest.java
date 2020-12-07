@@ -13,11 +13,34 @@ import javax.validation.constraints.*;
  * QuestionEditRequest
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2020-12-07T13:09:15.658+05:30")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2020-12-07T13:15:27.436+05:30")
 
 public class QuestionEditRequest   {
+  @JsonProperty("title")
+  private String title = null;
+
   @JsonProperty("content")
   private String content = null;
+
+  public QuestionEditRequest title(String title) {
+    this.title = title;
+    return this;
+  }
+
+  /**
+   * updated title of the question
+   * @return title
+  **/
+  @ApiModelProperty(value = "updated title of the question")
+
+
+  public String getTitle() {
+    return title;
+  }
+
+  public void setTitle(String title) {
+    this.title = title;
+  }
 
   public QuestionEditRequest content(String content) {
     this.content = content;
@@ -49,12 +72,13 @@ public class QuestionEditRequest   {
       return false;
     }
     QuestionEditRequest questionEditRequest = (QuestionEditRequest) o;
-    return Objects.equals(this.content, questionEditRequest.content);
+    return Objects.equals(this.title, questionEditRequest.title) &&
+        Objects.equals(this.content, questionEditRequest.content);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(content);
+    return Objects.hash(title, content);
   }
 
   @Override
@@ -62,6 +86,7 @@ public class QuestionEditRequest   {
     StringBuilder sb = new StringBuilder();
     sb.append("class QuestionEditRequest {\n");
     
+    sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
     sb.append("}");
     return sb.toString();

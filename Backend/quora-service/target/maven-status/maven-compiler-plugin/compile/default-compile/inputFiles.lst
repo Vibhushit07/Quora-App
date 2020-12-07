@@ -2,6 +2,7 @@ C:\Users\vibhu\Desktop\Project\Quora-App\Backend\quora-service\src\main\java\com
 C:\Users\vibhu\Desktop\Project\Quora-App\Backend\quora-service\src\main\java\com\upgrad\quora\service\business\PasswordCryptographyProvider.java
 C:\Users\vibhu\Desktop\Project\Quora-App\Backend\quora-service\src\main\java\com\upgrad\quora\service\common\ErrorCode.java
 C:\Users\vibhu\Desktop\Project\Quora-App\Backend\quora-service\src\main\java\com\upgrad\quora\service\entity\UserAuthEntity.java
+C:\Users\vibhu\Desktop\Project\Quora-App\Backend\quora-service\src\main\java\com\upgrad\quora\service\dao\QuestionDao.java
 C:\Users\vibhu\Desktop\Project\Quora-App\Backend\quora-service\src\main\java\com\upgrad\quora\service\exception\AnswerNotFoundException.java
 C:\Users\vibhu\Desktop\Project\Quora-App\Backend\quora-service\src\main\java\com\upgrad\quora\service\exception\AuthenticationFailedException.java
 C:\Users\vibhu\Desktop\Project\Quora-App\Backend\quora-service\src\main\java\com\upgrad\quora\service\exception\SignOutRestrictedException.java
@@ -17,3 +18,4 @@ C:\Users\vibhu\Desktop\Project\Quora-App\Backend\quora-service\src\main\java\com
 C:\Users\vibhu\Desktop\Project\Quora-App\Backend\quora-service\src\main\java\com\upgrad\quora\service\exception\InvalidQuestionException.java
 C:\Users\vibhu\Desktop\Project\Quora-App\Backend\quora-service\src\main\java\com\upgrad\quora\service\entity\QuestionEntity.java
 C:\Users\vibhu\Desktop\Project\Quora-App\Backend\quora-service\src\main\java\com\upgrad\quora\service\entity\UserEntity.java
+C:\Users\vibhu\Desktop\Project\Quora-App\Backend\quora-service\src\main\java\com\upgrad\quora\service\business\QuestionBusiness.java
