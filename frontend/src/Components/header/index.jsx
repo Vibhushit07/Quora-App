@@ -15,6 +15,8 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import { getHeader, resetHeader } from "../../Data/userData";
 import { signout } from "../../Services/user";
+import { getError, setError } from "../../Data/error";
+import { Error } from "../error";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -43,6 +45,10 @@ export const Header = () => {
   };
 
   const handleMenuClose = () => {
+    setError({
+      code: "",
+      message: "",
+    });
     setAnchorEl(null);
   };
 
@@ -51,7 +57,7 @@ export const Header = () => {
     handleMenuClose();
 
     if (response.code !== undefined) {
-      alert(`Code: ${response.code}\nMessage: ${response.message}`);
+      setError(response);
     } else {
       resetHeader();
       history.push("/login");
@@ -87,6 +93,7 @@ export const Header = () => {
             <NavLink to="/myQuestions">My Questions</NavLink>
           </MenuItem>
           <MenuItem onClick={handleSignout}>Signout</MenuItem>
+          {getError().code !== "" ? <Error /> : <div />}
         </div>
       )}
     </Menu>
@@ -105,6 +112,8 @@ export const Header = () => {
               QA App
             </NavLink>
           </Typography>
+
+          <div className={classes.grow} />
           <Button
             variant="contained"
             className={classes.button}
@@ -113,7 +122,6 @@ export const Header = () => {
           >
             Ask Question
           </Button>
-          <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <IconButton
               edge="end"

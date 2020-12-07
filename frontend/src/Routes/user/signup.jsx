@@ -14,6 +14,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 
 import { signup } from "../../Services/user";
+import { getError, setError } from "../../Data/error";
+import { Error } from "../../Components/error";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -21,6 +23,10 @@ const useStyles = makeStyles((theme) => ({
   },
   textfield: {
     width: "250px",
+  },
+  error: {
+    color: "red",
+    fontStyle: "oblique",
   },
 }));
 
@@ -33,26 +39,45 @@ export const Signup = () => {
     userName: "",
     emailAddress: "",
     password: "",
-    aboutMe: "",
-    country: "",
     dob: "",
     contactNumber: "",
     showPassword: false,
+    usernameError: false,
+    passwordError: false,
+    emailAddressError: false,
+    firstNameError: false,
   });
 
   const handleChange = (prop) => (event) =>
-    setValues({ ...values, [prop]: event.target.value });
+    setValues({
+      ...values,
+      [prop]: event.target.value,
+      usernameError: false,
+      passwordError: false,
+      emailAddressError: false,
+      firstNameError: false,
+    });
 
   const showPassword = () => setValues({ ...values, showPassword: true });
 
   const hidePassword = () => setValues({ ...values, showPassword: false });
 
   const submit = () => {
-    const response = signup(values);
-    if (response.code !== undefined) {
-      alert(`Code: ${response.code}\nMessage: ${response.message}`);
+    if (values.firstName === "") {
+      setValues({ ...values, firstNameError: true });
+    } else if (values.userName === "") {
+      setValues({ ...values, usernameError: true });
+    } else if (values.emailAddress === "") {
+      setValues({ ...values, emailAddressError: true });
+    } else if (values.password === "") {
+      setValues({ ...values, passwordError: true });
     } else {
-      history.push("/");
+      const response = signup(values);
+      if (response.code !== undefined) {
+        setError(response);
+      } else {
+        history.push("/");
+      }
     }
   };
 
@@ -124,22 +149,6 @@ export const Signup = () => {
         <br /> <br />
         <TextField
           className={classes.textfield}
-          label="About"
-          variant="outlined"
-          size="small"
-          onChange={handleChange("aboutMe")}
-        />
-        <br /> <br />
-        <TextField
-          className={classes.textfield}
-          label="Country"
-          variant="outlined"
-          size="small"
-          onChange={handleChange("country")}
-        />
-        <br /> <br />
-        <TextField
-          className={classes.textfield}
           label="Date of Birth"
           type="date"
           variant="outlined"
@@ -151,7 +160,6 @@ export const Signup = () => {
         <TextField
           className={classes.textfield}
           label="Contact Number"
-          type="number"
           variant="outlined"
           size="small"
           InputLabelProps={{ shrink: true }}
@@ -167,6 +175,19 @@ export const Signup = () => {
           Signup
         </Button>
       </form>
+      {values.firstNameError && (
+        <div className={classes.error}>First name required</div>
+      )}
+      {values.usernameError && (
+        <div className={classes.error}>Username required</div>
+      )}
+      {values.emailAddressError && (
+        <div className={classes.error}>Email address required</div>
+      )}
+      {values.passwordError && (
+        <div className={classes.error}>Password required</div>
+      )}
+      {getError().code !== "" ? <Error /> : <div></div>}
     </div>
   );
 };
