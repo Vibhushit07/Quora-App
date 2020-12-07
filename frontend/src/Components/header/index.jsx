@@ -78,19 +78,19 @@ export const Header = () => {
       {getHeader().authorization === "" ? (
         <div>
           <MenuItem onClick={handleMenuClose}>
-            <NavLink to="/signup">Signup</NavLink>
+            <NavLink to="/user/signup">Signup</NavLink>
           </MenuItem>
           <MenuItem onClick={handleMenuClose}>
-            <NavLink to="/login">Login</NavLink>
+            <NavLink to="/user/login">Login</NavLink>
           </MenuItem>
         </div>
       ) : (
         <div>
           <MenuItem onClick={handleMenuClose}>
-            <NavLink to="/profile">Profile</NavLink>
+            <NavLink to="/user/profile">Profile</NavLink>
           </MenuItem>
           <MenuItem onClick={handleMenuClose}>
-            <NavLink to="/myQuestions">My Questions</NavLink>
+            <NavLink to="/user/questions">My Questions</NavLink>
           </MenuItem>
           <MenuItem onClick={handleSignout}>Signout</MenuItem>
           {getError().code !== "" ? <Error /> : <div />}

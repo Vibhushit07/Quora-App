@@ -178,7 +178,7 @@ export const Signup = () => {
         <br /> <br />
         <div>
           <i>Already have an account </i>{" "}
-          <NavLink to="/login">
+          <NavLink to="/user/login">
             <b>Login</b>
           </NavLink>
         </div>

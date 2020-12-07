@@ -16,10 +16,12 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 
+import { Error } from "../../Components/error";
 import { profile, signin } from "../../Services/user";
+import { getUserQuestions } from "../../Services/question";
+import { setUserQuestion } from "../../Data/questions";
 import { setAuthenticate, setTokenNId, setUserData } from "../../Data/userData";
 import { getError } from "../../Data/error";
-import { Error } from "../../Components/error";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -79,6 +81,7 @@ export const Login = () => {
         history.push("/");
 
         setUserData(await profile());
+        setUserQuestion(await getUserQuestions());
       }
     }
   };
@@ -136,7 +139,7 @@ export const Login = () => {
         <br />
         <div>
           Not Registered ?{" "}
-          <NavLink to="/signup">
+          <NavLink to="/user/signup">
             <b>Sign up now</b>{" "}
           </NavLink>
         </div>
