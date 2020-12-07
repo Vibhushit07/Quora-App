@@ -5,9 +5,11 @@ C:\Users\vibhu\Desktop\Project\Quora-App\Backend\quora-service\src\main\java\com
 C:\Users\vibhu\Desktop\Project\Quora-App\Backend\quora-service\src\main\java\com\upgrad\quora\service\dao\QuestionDao.java
 C:\Users\vibhu\Desktop\Project\Quora-App\Backend\quora-service\src\main\java\com\upgrad\quora\service\exception\AnswerNotFoundException.java
 C:\Users\vibhu\Desktop\Project\Quora-App\Backend\quora-service\src\main\java\com\upgrad\quora\service\exception\AuthenticationFailedException.java
+C:\Users\vibhu\Desktop\Project\Quora-App\Backend\quora-service\src\main\java\com\upgrad\quora\service\entity\AnswerEntity.java
 C:\Users\vibhu\Desktop\Project\Quora-App\Backend\quora-service\src\main\java\com\upgrad\quora\service\exception\SignOutRestrictedException.java
 C:\Users\vibhu\Desktop\Project\Quora-App\Backend\quora-service\src\main\java\com\upgrad\quora\service\exception\SignUpRestrictedException.java
 C:\Users\vibhu\Desktop\Project\Quora-App\Backend\quora-service\src\main\java\com\upgrad\quora\service\business\JwtTokenProvider.java
+C:\Users\vibhu\Desktop\Project\Quora-App\Backend\quora-service\src\main\java\com\upgrad\quora\service\dao\AnswerDao.java
 C:\Users\vibhu\Desktop\Project\Quora-App\Backend\quora-service\src\main\java\com\upgrad\quora\service\common\GenericErrorCode.java
 C:\Users\vibhu\Desktop\Project\Quora-App\Backend\quora-service\src\main\java\com\upgrad\quora\service\common\UnexpectedException.java
 C:\Users\vibhu\Desktop\Project\Quora-App\Backend\quora-service\src\main\java\com\upgrad\quora\service\ServiceConfiguration.java
@@ -16,6 +18,7 @@ C:\Users\vibhu\Desktop\Project\Quora-App\Backend\quora-service\src\main\java\com
 C:\Users\vibhu\Desktop\Project\Quora-App\Backend\quora-service\src\main\java\com\upgrad\quora\service\exception\UserNotFoundException.java
 C:\Users\vibhu\Desktop\Project\Quora-App\Backend\quora-service\src\main\java\com\upgrad\quora\service\business\CommonBusiness.java
 C:\Users\vibhu\Desktop\Project\Quora-App\Backend\quora-service\src\main\java\com\upgrad\quora\service\exception\InvalidQuestionException.java
+C:\Users\vibhu\Desktop\Project\Quora-App\Backend\quora-service\src\main\java\com\upgrad\quora\service\business\AnswerBusiness.java
 C:\Users\vibhu\Desktop\Project\Quora-App\Backend\quora-service\src\main\java\com\upgrad\quora\service\entity\QuestionEntity.java
 C:\Users\vibhu\Desktop\Project\Quora-App\Backend\quora-service\src\main\java\com\upgrad\quora\service\entity\UserEntity.java
 C:\Users\vibhu\Desktop\Project\Quora-App\Backend\quora-service\src\main\java\com\upgrad\quora\service\business\QuestionBusiness.java

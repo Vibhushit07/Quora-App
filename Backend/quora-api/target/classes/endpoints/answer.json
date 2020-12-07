@@ -400,7 +400,7 @@
     "AnswerRequest": {
       "type": "object",
       "properties": {
-        "answer": {
+        "content": {
           "type": "string",
           "description": "answer to the question"
         }
