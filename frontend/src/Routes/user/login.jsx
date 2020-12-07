@@ -125,8 +125,8 @@ export const Login = () => {
           onClick={submit}
         >
           Sign-in
-        </Button> <br /><br /><br /><br />
-        <div>Create an account  <NavLink to="/signup">Signup</NavLink></div>
+        </Button> <br /><br /><br />
+        <div><i>Create an account </i> <NavLink to="/signup"><b>Signup</b> </NavLink></div>
       </form>
       <br />
       {values.usernameError && (

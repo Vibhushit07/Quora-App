@@ -176,7 +176,7 @@ export const Signup = () => {
           Signup
         </Button>
         <br /> <br />
-        <div>Already have an account  <NavLink to="/login">Login</NavLink></div>
+        <div><i>Already have an account </i> <NavLink to="/login"><b>Login</b></NavLink></div>
       </form>
       {values.firstNameError && (
         <div className={classes.error}>First name required</div>
