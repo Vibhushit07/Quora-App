@@ -15,3 +15,18 @@ export const postQuestion = async (question) => {
         })
         .catch(err => console.log('error ', err));
 }
+
+export const getAllQuestions = async () => {
+
+    return await fetch('/api/question/all', {
+        method: 'get',
+        headers: {
+            'Content-Type': 'application/json',
+            'authorization': getHeader().authorization
+        }
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log('error ', err));
+}
