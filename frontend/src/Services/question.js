@@ -46,3 +46,18 @@ export const editQuestion = async (questionId, question) => {
         })
         .catch(err => console.log('error ', err));
 }
+
+export const deleteQuestion = async (questionId) => {
+
+    return await fetch('/api/question/delete/' + questionId, {
+        method: 'delete',
+        headers: {
+            'Content-Type': 'application/json',
+            'authorization': getHeader().authorization
+        }
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log('error ', err));
+}
