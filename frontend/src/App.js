@@ -6,10 +6,7 @@ import { Header } from './Components/header';
 import { Signup } from './Routes/user/signup';
 import { Login } from './Routes/user/login';
 import { Profile } from './Routes/user/profile';
-import { MyQuestions } from './Routes/user/myQuestions';
 import { Home } from './Routes/home';
-import { PostQuestion } from './Routes/postQuestion';
-import { Answer } from './Routes/answer';
 
 function App() {
   return (
