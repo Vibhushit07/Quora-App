@@ -13,6 +13,7 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
+import {  Grid, FormControlLabel, Checkbox } from '@material-ui/core';
 
 import { profile, signin } from "../../Services/user";
 import { setAuthenticate, setTokenNId, setUserData } from "../../Data/userData";
@@ -86,7 +87,7 @@ export const Login = () => {
 
   return (
     <Container className={classes.container}>
-      <h1>Login</h1>
+      <h1>Member Login</h1>
       <form>
         <TextField
           className={classes.textField}
@@ -116,17 +117,28 @@ export const Login = () => {
               </InputAdornment>
             }
           />
+          <br/>
+         <Grid container alignItems="center" justify="space-between">
+                        <Grid item>
+                            <FormControlLabel control={
+                                <Checkbox
+                                    color="primary"
+                                />
+                            } label="Remember me" />
+                            </Grid>
+                            
+                        </Grid>
         </FormControl>
-        <br /><br /><br />
+        <br /><br />
         <Button
           variant="contained"
           color="primary"
           disableElevation
           onClick={submit}
         >
-          Sign-in
-        </Button> <br /><br /><br />
-        <div><i>Create an account </i> <NavLink to="/signup"><b>Signup</b> </NavLink></div>
+          Sign In
+        </Button> <br /><br />
+        <div>Not Registered ? <NavLink to="/signup"><b>Sign up now</b> </NavLink></div>
       </form>
       <br />
       {values.usernameError && (
