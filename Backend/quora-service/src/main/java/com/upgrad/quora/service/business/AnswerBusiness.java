@@ -7,6 +7,7 @@ import com.upgrad.quora.service.entity.AnswerEntity;
 import com.upgrad.quora.service.entity.QuestionEntity;
 import com.upgrad.quora.service.entity.UserAuthEntity;
 import com.upgrad.quora.service.entity.UserEntity;
+import com.upgrad.quora.service.exception.AnswerNotFoundException;
 import com.upgrad.quora.service.exception.AuthorizationFailedException;
 import com.upgrad.quora.service.exception.InvalidQuestionException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +51,35 @@ public class AnswerBusiness {
                     answerEntity.setUser(userEntity);
                     answerEntity.setQuestion(questionEntity);
                     return answerDao.addAnswer(answerEntity);
+                }
+            }
+        }
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    public AnswerEntity editAAnswer(final AnswerEntity answerEntity, final String auth, final String answerId) throws AuthorizationFailedException, AnswerNotFoundException {
+        final UserAuthEntity userAuthEntity = userDao.getUserAuthByAccessToken(auth);
+
+        if(userAuthEntity == null) {
+            throw new AuthorizationFailedException("ATHR-001", "User has not signed in");
+        } else {
+            if(userAuthEntity.getLogoutAt() != null) {
+                throw new AuthorizationFailedException("ATHR-002", "User is signed out. Sign in first to post a question");
+            } else {
+                final AnswerEntity answerEntity1 = answerDao.getAnswerByUuid(answerId);
+
+                if(answerEntity1 == null) {
+                    throw new AnswerNotFoundException("ANS-001", "Entered answer uuid does not exist");
+                } else if(answerEntity1.getUser() != userAuthEntity.getUser()) {
+                    throw new AuthorizationFailedException("ATHR-003", "Only the answer owner can edit the answer");
+                } else {
+                    answerEntity.setUuid(answerEntity1.getUuid());
+                    answerEntity.setId(answerEntity1.getId());
+                    answerEntity.setDate(answerEntity1.getDate());
+                    answerEntity.setUser(answerEntity1.getUser());
+                    answerEntity.setQuestion(answerEntity1.getQuestion());
+
+                    return answerDao.editAnswer(answerEntity);
                 }
             }
         }
