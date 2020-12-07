@@ -30,3 +30,19 @@ export const getAllQuestions = async () => {
         })
         .catch(err => console.log('error ', err));
 }
+
+export const editQuestion = async (questionId, question) => {
+
+    return await fetch('/api/question/edit/' + questionId, {
+        method: 'put',
+        headers: {
+            'Content-Type': 'application/json',
+            'authorization': getHeader().authorization
+        },
+        body: JSON.stringify(question)
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log('error ', err));
+}
