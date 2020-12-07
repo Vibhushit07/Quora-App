@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory , NavLink} from "react-router-dom";
 
 import {
   TextField,
@@ -83,6 +83,7 @@ export const Signup = () => {
 
   return (
     <div className={classes.container}>
+        <br/>
       <h1>Create Account</h1>
       <form>
         <TextField
@@ -174,6 +175,8 @@ export const Signup = () => {
         >
           Signup
         </Button>
+        <br /> <br />
+        <div><i>Already have an account </i> <NavLink to="/login"><b>Login</b></NavLink></div>
       </form>
       {values.firstNameError && (
         <div className={classes.error}>First name required</div>

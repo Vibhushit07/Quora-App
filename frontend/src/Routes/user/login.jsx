@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-
+import { NavLink } from "react-router-dom";
 import {
   TextField,
   Button,
@@ -96,7 +96,7 @@ export const Login = () => {
           error={values.usernameError}
           required
         />
-        <br />
+        <br /><br />
         <FormControl variant="outlined" className={classes.textField} required>
           <InputLabel htmlFor="password">Password</InputLabel>
           <OutlinedInput
@@ -117,7 +117,7 @@ export const Login = () => {
             }
           />
         </FormControl>
-        <br />
+        <br /><br /><br />
         <Button
           variant="contained"
           color="primary"
@@ -125,7 +125,8 @@ export const Login = () => {
           onClick={submit}
         >
           Sign-in
-        </Button>
+        </Button> <br /><br /><br />
+        <div><i>Create an account </i> <NavLink to="/signup"><b>Signup</b> </NavLink></div>
       </form>
       <br />
       {values.usernameError && (
