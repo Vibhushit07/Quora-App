@@ -12,6 +12,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RestController
 @RequestMapping("/")
 public class AnswerController {
@@ -44,5 +47,22 @@ public class AnswerController {
         final AnswerEntity answerEntity = answerBusiness.deleteAAnswer(authorization.split("Bearer ")[1], answerId);
         final AnswerDeleteResponse answerDeleteResponse = new AnswerDeleteResponse().id(answerEntity.getUuid()).status("ANSWER EDITED");
         return new ResponseEntity<>(answerDeleteResponse, HttpStatus.OK);
+    }
+
+    @GetMapping("answer/all/{questionId}")
+    private ResponseEntity<List<AnswerDetailsResponse>> getAllAnswersOfQuestion(@RequestHeader("authorization") final String authorization, @PathVariable("questionId") final String questionId) throws AuthorizationFailedException, InvalidQuestionException {
+
+        List<AnswerEntity> list = answerBusiness.getAllAnswersByQuestionId(authorization.split("Bearer ")[1], questionId);
+
+        List<AnswerDetailsResponse> answers = list.stream()
+                .map(answerEntity -> {
+                    AnswerDetailsResponse answerDetailsResponse = new AnswerDetailsResponse();
+                    answerDetailsResponse.setAnswerContent(answerEntity.getAns());
+                    answerDetailsResponse.setQuestionContent(answerEntity.getQuestion().getContent());
+                    answerDetailsResponse.setId(answerEntity.getUuid());
+                    return answerDetailsResponse;
+                }).collect(Collectors.toList());
+
+        return new ResponseEntity<>(answers, HttpStatus.OK);
     }
 }
