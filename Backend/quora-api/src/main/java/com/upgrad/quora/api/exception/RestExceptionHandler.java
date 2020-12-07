@@ -87,4 +87,16 @@ public class RestExceptionHandler {
                 new ErrorResponse().code(exc.getCode()).message(exc.getErrorMessage()), HttpStatus.CONFLICT
         );
     }
+
+    /**
+     * @param exc      - AnswerNotFoundException type object contains error code and error message.
+     * @param request  - The web request object gives access to all the request parameters.
+     * @return         - ResponseEntity<ErrorResponse> type object displays error code and error message along with HttpStatus CONFLICT
+     */
+    @ExceptionHandler(AnswerNotFoundException.class)
+    public ResponseEntity<ErrorResponse> answerNotFoundException(AnswerNotFoundException exc, WebRequest request) {
+        return new ResponseEntity<ErrorResponse>(
+                new ErrorResponse().code(exc.getCode()).message(exc.getErrorMessage()), HttpStatus.CONFLICT
+        );
+    }
 }
