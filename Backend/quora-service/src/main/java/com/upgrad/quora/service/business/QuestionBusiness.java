@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.ZonedDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -39,6 +40,21 @@ public class QuestionBusiness {
                 questionEntity.setUser(userEntity);
 
                 return questionDao.addQuestion(questionEntity);
+            }
+        }
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    public List<QuestionEntity> getAllQuestion(final String authToken) throws AuthorizationFailedException {
+        UserAuthEntity userAuthEntity = userDao.getUserAuthByAccessToken(authToken);
+
+        if(userAuthEntity == null) {
+            throw new AuthorizationFailedException("ATHR-001", "User has not signed in");
+        } else {
+            if(userAuthEntity.getLogoutAt() != null) {
+                throw new AuthorizationFailedException("ATHR-002", "User is signed out. Sign in first to get all questions");
+            } else {
+                return questionDao.allQuestions();
             }
         }
     }
