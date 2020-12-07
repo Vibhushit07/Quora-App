@@ -84,4 +84,27 @@ public class AnswerBusiness {
             }
         }
     }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    public AnswerEntity deleteAAnswer(final String auth, final String answerId)  throws AuthorizationFailedException, AnswerNotFoundException {
+        final UserAuthEntity userAuthEntity = userDao.getUserAuthByAccessToken(auth);
+
+        if(userAuthEntity == null) {
+            throw new AuthorizationFailedException("ATHR-001", "User has not signed in");
+        } else {
+            if(userAuthEntity.getLogoutAt() != null) {
+                throw new AuthorizationFailedException("ATHR-002", "User is signed out. Sign in first to post a question");
+            } else {
+                final AnswerEntity answerEntity = answerDao.getAnswerByUuid(answerId);
+
+                if(answerEntity == null) {
+                    throw new AnswerNotFoundException("ANS-001", "Entered answer uuid does not exist");
+                } else if(answerEntity.getUser() != userAuthEntity.getUser()) {
+                    throw new AuthorizationFailedException("ATHR-003", "Only the answer owner can delete the answer");
+                } else {
+                    return answerDao.deleteAnswer(answerEntity);
+                }
+            }
+        }
+    }
 }
