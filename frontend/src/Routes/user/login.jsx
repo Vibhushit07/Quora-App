@@ -78,10 +78,10 @@ export const Login = () => {
     } else {
       setAuthenticate();
       if (setTokenNId(await signin())) {
-        history.push("/");
-
+        setQuestions(await getAllQuestions());
         setUserData(await profile());
         setUserQuestion(await getUserQuestions());
+        history.push("/");
       }
     }
   };

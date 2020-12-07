@@ -20,6 +20,7 @@ function App() {
           <Route exact path='/user/login' render={() => <Login />} />
           <Route exact path='/user/profile' render={() => <Profile />} />
           <Route exact path='/user/questions' render={() => <UserQuestions />} />
+          <Route exact path='/question/:operation/:id?' render={(props) => <PostQuestion {...props} />} />
           <Redirect to='/' render={() => <Home />} />
         </Switch>
       </BrowserRouter>
