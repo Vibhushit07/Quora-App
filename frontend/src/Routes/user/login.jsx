@@ -16,8 +16,8 @@ import { Visibility, VisibilityOff } from "@material-ui/icons";
 
 import { profile, signin } from "../../Services/user";
 import { setAuthenticate, setTokenNId, setUserData } from "../../Data/userData";
-import { setQuestions, setUserQuestion } from "../../Data/questions";
-import { getAllQuestions, getUserQuestions } from "../../Services/question";
+import { getError, setError } from "../../Data/error";
+import { Error } from "../../Components/error";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -26,20 +26,36 @@ const useStyles = makeStyles((theme) => ({
   },
   textField: {
     width: "250px",
+    margin: "5px",
+  },
+  error: {
+    color: "red",
+    fontStyle: "oblique",
   },
 }));
 
 export const Login = () => {
+  // setError({
+  //   code: "",
+  //   message: "",
+  // });
   const classes = useStyles();
   const history = useHistory();
   const [values, setValues] = useState({
     userName: "",
     password: "",
     showPassword: false,
+    usernameError: false,
+    passwordError: false,
   });
 
   const handleChange = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value });
+    setValues({
+      ...values,
+      [prop]: event.target.value,
+      usernameError: false,
+      passwordError: false,
+    });
   };
 
   const showPassword = () => {
@@ -51,21 +67,21 @@ export const Login = () => {
   };
 
   const submit = async () => {
-    const user = {
-      username: values.userName,
-      password: values.password,
-    };
+    console.log(values.userName);
+    if (values.userName === "") {
+      setValues({ ...values, usernameError: true });
+    } else if (values.password === "") {
+      setValues({ ...values, passwordError: true });
+    } else {
+      setAuthenticate();
+      // const resp = ;
+      if (setTokenNId(await signin())) {
 
-    window.localStorage.setItem("QA-App", JSON.stringify(user));
+        history.push("/");
 
-    setAuthenticate();
-    setTokenNId(await signin());
-    setQuestions(await getAllQuestions());
-
-    history.push("/");
-
-    setUserData(await profile());
-    setUserQuestion(await getUserQuestions());
+        setUserData(await profile());
+      }
+    }
   };
 
   return (
@@ -77,14 +93,15 @@ export const Login = () => {
           label={"Username"}
           onChange={handleChange("userName")}
           variant="outlined"
+          error={values.usernameError}
           required
         />
-        <br /> <br />
+        <br />
         <FormControl variant="outlined" className={classes.textField} required>
           <InputLabel htmlFor="password">Password</InputLabel>
           <OutlinedInput
-            id="password"
             label="Password"
+            error={values.passwordError}
             type={values.showPassword ? "text" : "password"}
             onChange={handleChange("password")}
             endAdornment={
@@ -100,16 +117,24 @@ export const Login = () => {
             }
           />
         </FormControl>
-        <br /> <br />
+        <br />
         <Button
           variant="contained"
           color="primary"
           disableElevation
           onClick={submit}
         >
-          Login
+          Sign-in
         </Button>
       </form>
+      <br />
+      {values.usernameError && (
+        <div className={classes.error}>Username required</div>
+      )}
+      {values.passwordError && (
+        <div className={classes.error}>Password required</div>
+      )}
+      {getError().code !== "" ? <Error /> : <div></div>}
     </Container>
   );
 };
