@@ -21,8 +21,8 @@ insert into user_auth (id , uuid , user_id , access_token , expires_at , login_a
 
 
 --Insert values in QUESTION table
-insert into question (id,uuid,title, content,date,user_id) values(1024,'database_question_uuid','database_question_title','database_question_content','2018-09-17 19:41:19.593',1026);
+insert into question (id,uuid,content,date,user_id) values(1024,'database_question_uuid','database_question_content','2018-09-17 19:41:19.593',1026);
 
 
 --Insert values in ANSWER table
-insert into answer(id,uuid,content,date,user_id,question_id) values (1024,'database_answer_uuid','my_answer','2018-09-17 19:41:19.593',1026,1024);
+insert into answer(id,uuid,ans,date,user_id,question_id) values (1024,'database_answer_uuid','my_answer','2018-09-17 19:41:19.593',1026,1024);

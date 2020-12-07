@@ -1,9 +1,9 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Question API",
+    "title": "Answer API",
     "version": "1.0.0",
-    "description": "API of Question Services"
+    "description": "API of Answer Services"
   },
   "host": "quora.io",
   "schemes": [
@@ -13,8 +13,8 @@
   "basePath": "/api/v1",
   "tags": [
     {
-      "name": "API#004 Question",
-      "description": "All operations marked with 'API#004 Question' are relevant to the question use case"
+      "name": "API#005 Answer",
+      "description": "All operations marked with 'API#005 Answer' are relevant to the answer use case"
     }
   ],
   "securityDefinitions": {
@@ -24,11 +24,11 @@
     }
   },
   "paths": {
-    "/question/create": {
+    "/question/{questionId}/answer/create": {
       "x-swagger-router-controller": "api",
       "post": {
         "tags": [
-          "API#004 Create Question"
+          "API#005 Create Answer"
         ],
         "security": [
           {
@@ -36,9 +36,9 @@
             ]
           }
         ],
-        "operationId": "createQuestion",
-        "summary": "createQuestion",
-        "description": "User can create a question.\n",
+        "operationId": "createAnswer",
+        "summary": "createAnswer",
+        "description": "User can reply to a question by creating the answer.\n",
         "consumes": [
           "application/json"
         ],
@@ -50,20 +50,23 @@
             "$ref": "#/parameters/BearerAuthorization"
           },
           {
+            "$ref": "#/parameters/questionId"
+          },
+          {
             "in": "body",
-            "name": "QuestionRequest",
-            "description": "Request containing question information",
+            "name": "AnswerRequest",
+            "description": "Request containing answer information",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/QuestionRequest"
+              "$ref": "#/definitions/AnswerRequest"
             }
           }
         ],
         "responses": {
           "201": {
-            "description": "CREATED - Question created successfully",
+            "description": "CREATED - Answer created successfully",
             "schema": {
-              "$ref": "#/definitions/QuestionResponse"
+              "$ref": "#/definitions/AnswerResponse"
             }
           },
           "400": {
@@ -114,89 +117,11 @@
         }
       }
     },
-    "/question/all": {
-      "x-swagger-router-controller": "api",
-      "get": {
-        "tags": [
-          "API#004 Get All Questions"
-        ],
-        "security": [
-          {
-            "BearerAuthorization": [
-            ]
-          }
-        ],
-        "operationId": "getAllQuestions",
-        "summary": "getAllQuestions",
-        "description": "User can get all questions.\n",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/parameters/BearerAuthorization"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK - Questions fetched successfully",
-            "schema": {
-              "$ref": "#/definitions/QuestionDetailsResponse"
-            }
-          },
-          "400": {
-            "description": "BAD REQUEST - server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, mandatory elements are missing)",
-            "headers": {
-              "request-id": {
-                "type": "string",
-                "description": "Used as correlation id while tracing for the request in the backend"
-              }
-            }
-          },
-          "401": {
-            "description": "UNAUTHORIZED - user has provided wrong credentials",
-            "headers": {
-              "request-id": {
-                "type": "string",
-                "description": "Used as correlation id while tracing for the request in the backend"
-              }
-            }
-          },
-          "403": {
-            "description": "FORBIDDEN - request has not been applied because client application has no permission to perform action",
-            "headers": {
-              "request-id": {
-                "type": "string",
-                "description": "Used as correlation id while tracing for the request in the backend"
-              }
-            }
-          },
-          "422": {
-            "description": "UNPROCESSABLE ENTITY - request was well-formed but server unable to process due to semantic errors",
-            "headers": {
-              "request-id": {
-                "type": "string",
-                "description": "Used as correlation id while tracing for the request flow to the backend"
-              }
-            }
-          },
-          "500": {
-            "description": "INTERNAL SERVER ERROR - server encountered an unexpected condition that prevented it from fulfilling the request.",
-            "headers": {
-              "request-id": {
-                "type": "string",
-                "description": "Used as correlation id while tracing for the request in the backend"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/question/edit/{questionId}": {
+    "/answer/edit/{answerId}": {
       "x-swagger-router-controller": "api",
       "put": {
         "tags": [
-          "API#004 Edit a Question"
+          "API#005 Edit an Answer"
         ],
         "security": [
           {
@@ -204,9 +129,9 @@
             ]
           }
         ],
-        "operationId": "editQuestionContent",
-        "summary": "editQuestionContent",
-        "description": "User can edit the question if he has posted the question.\n",
+        "operationId": "editAnswerContent",
+        "summary": "editAnswerContent",
+        "description": "User can edit the answer if he has posted the answer.\n",
         "consumes": [
           "application/json"
         ],
@@ -218,23 +143,23 @@
             "$ref": "#/parameters/BearerAuthorization"
           },
           {
-            "$ref": "#/parameters/questionId"
+            "$ref": "#/parameters/answerId"
           },
           {
             "in": "body",
-            "name": "QuestionEditRequest",
-            "description": "Request containing question edit information",
+            "name": "AnswerEditRequest",
+            "description": "Request containing answer edit information",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/QuestionEditRequest"
+              "$ref": "#/definitions/AnswerEditRequest"
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "OK - Questions changed successfully",
+            "description": "OK - Answer changed successfully",
             "schema": {
-              "$ref": "#/definitions/QuestionEditResponse"
+              "$ref": "#/definitions/AnswerEditResponse"
             }
           },
           "400": {
@@ -285,11 +210,11 @@
         }
       }
     },
-    "/question/delete/{questionId}": {
+    "/answer/delete/{answerId}": {
       "x-swagger-router-controller": "api",
       "delete": {
         "tags": [
-          "API#004 Delete a Question"
+          "API#004 Delete an Answer"
         ],
         "security": [
           {
@@ -297,9 +222,90 @@
             ]
           }
         ],
-        "operationId": "deleteQuestion",
-        "summary": "deleteQuestion",
-        "description": "Admin or user can delete the question if he has posted the question.\n",
+        "operationId": "deleteAnswer",
+        "summary": "deleteAnswer",
+        "description": "Admin or user can delete the answer if he has posted the answer.\n",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/BearerAuthorization"
+          },
+          {
+            "$ref": "#/parameters/answerId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK - Answer deleted successfully",
+            "schema": {
+              "$ref": "#/definitions/AnswerDeleteResponse"
+            }
+          },
+          "400": {
+            "description": "BAD REQUEST - server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, mandatory elements are missing)",
+            "headers": {
+              "request-id": {
+                "type": "string",
+                "description": "Used as correlation id while tracing for the request in the backend"
+              }
+            }
+          },
+          "401": {
+            "description": "UNAUTHORIZED - user has provided wrong credentials",
+            "headers": {
+              "request-id": {
+                "type": "string",
+                "description": "Used as correlation id while tracing for the request in the backend"
+              }
+            }
+          },
+          "403": {
+            "description": "FORBIDDEN - request has not been applied because client application has no permission to perform action",
+            "headers": {
+              "request-id": {
+                "type": "string",
+                "description": "Used as correlation id while tracing for the request in the backend"
+              }
+            }
+          },
+          "422": {
+            "description": "UNPROCESSABLE ENTITY - request was well-formed but server unable to process due to semantic errors",
+            "headers": {
+              "request-id": {
+                "type": "string",
+                "description": "Used as correlation id while tracing for the request flow to the backend"
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL SERVER ERROR - server encountered an unexpected condition that prevented it from fulfilling the request.",
+            "headers": {
+              "request-id": {
+                "type": "string",
+                "description": "Used as correlation id while tracing for the request in the backend"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/answer/all/{questionId}": {
+      "x-swagger-router-controller": "api",
+      "get": {
+        "tags": [
+          "API#004 Get the details of all Answers a for specific Question"
+        ],
+        "security": [
+          {
+            "BearerAuthorization": [
+            ]
+          }
+        ],
+        "operationId": "getAllAnswersToQuestion",
+        "summary": "getAllAnswersToQuestion",
+        "description": "User can get the details of all the answers for a specific question.\n",
         "produces": [
           "application/json"
         ],
@@ -313,90 +319,9 @@
         ],
         "responses": {
           "200": {
-            "description": "OK - Questions deleted successfully",
+            "description": "OK - Fetched the answers successfully",
             "schema": {
-              "$ref": "#/definitions/QuestionDeleteResponse"
-            }
-          },
-          "400": {
-            "description": "BAD REQUEST - server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, mandatory elements are missing)",
-            "headers": {
-              "request-id": {
-                "type": "string",
-                "description": "Used as correlation id while tracing for the request in the backend"
-              }
-            }
-          },
-          "401": {
-            "description": "UNAUTHORIZED - user has provided wrong credentials",
-            "headers": {
-              "request-id": {
-                "type": "string",
-                "description": "Used as correlation id while tracing for the request in the backend"
-              }
-            }
-          },
-          "403": {
-            "description": "FORBIDDEN - request has not been applied because client application has no permission to perform action",
-            "headers": {
-              "request-id": {
-                "type": "string",
-                "description": "Used as correlation id while tracing for the request in the backend"
-              }
-            }
-          },
-          "422": {
-            "description": "UNPROCESSABLE ENTITY - request was well-formed but server unable to process due to semantic errors",
-            "headers": {
-              "request-id": {
-                "type": "string",
-                "description": "Used as correlation id while tracing for the request flow to the backend"
-              }
-            }
-          },
-          "500": {
-            "description": "INTERNAL SERVER ERROR - server encountered an unexpected condition that prevented it from fulfilling the request.",
-            "headers": {
-              "request-id": {
-                "type": "string",
-                "description": "Used as correlation id while tracing for the request in the backend"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/question/all/{userId}": {
-      "x-swagger-router-controller": "api",
-      "get": {
-        "tags": [
-          "API#004 Get the details of all Questions posted by a specific user"
-        ],
-        "security": [
-          {
-            "BearerAuthorization": [
-            ]
-          }
-        ],
-        "operationId": "getAllQuestionsByUser",
-        "summary": "getAllQuestionsByUser",
-        "description": "User can get the details of all the questions posted by a specific user.\n",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/parameters/BearerAuthorization"
-          },
-          {
-            "$ref": "#/parameters/userId"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK - Fetched the questions successfully",
-            "schema": {
-              "$ref": "#/definitions/QuestionDetailsResponse"
+              "$ref": "#/definitions/AnswerDetailsResponse"
             }
           },
           "400": {
@@ -449,19 +374,19 @@
     }
   },
   "parameters": {
-    "userId": {
-      "name": "userId",
-      "type": "string",
-      "in": "path",
-      "required": true,
-      "description": "Unique identifier of User in a standard UUID format"
-    },
     "questionId": {
       "name": "questionId",
       "type": "string",
       "in": "path",
       "required": true,
       "description": "Unique identifier of Question in a standard UUID format"
+    },
+    "answerId": {
+      "name": "answerId",
+      "type": "string",
+      "in": "path",
+      "required": true,
+      "description": "Unique identifier of Answer in a standard UUID format"
     },
     "BearerAuthorization": {
       "name": "authorization",
@@ -472,32 +397,28 @@
     }
   },
   "definitions": {
-    "QuestionRequest": {
+    "AnswerRequest": {
       "type": "object",
       "properties": {
-        "title": {
+        "answer": {
           "type": "string",
-          "description": "title of the question"
-        },
-        "content": {
-          "type": "string",
-          "description": "content of the question"
+          "description": "answer to the question"
         }
       },
       "required": [
-        "content"
+        "answer"
       ]
     },
-    "QuestionResponse": {
+    "AnswerResponse": {
       "type": "object",
       "properties": {
         "id": {
           "type": "string",
-          "description": "question uuid"
+          "description": "uuid of the answer"
         },
         "status": {
           "type": "string",
-          "description": "status of the question"
+          "description": "status of the answer registered"
         }
       },
       "required": [
@@ -505,51 +426,25 @@
         "status"
       ]
     },
-    "QuestionDetailsResponse": {
+    "AnswerEditRequest": {
       "type": "object",
       "properties": {
-        "id": {
-          "type": "string",
-          "description": "question uuid"
-        },
-        "title": {
-          "type": "string",
-          "description": "Question content"
-        },
         "content": {
           "type": "string",
-          "description": "Question content"
-        }
-      },
-      "required": [
-        "id",
-        "title",
-        "content"
-      ]
-    },
-    "QuestionEditRequest": {
-      "type": "object",
-      "properties": {
-        "title": {
-          "type": "string",
-          "description": "updated title of the question"
-        },
-        "content": {
-          "type": "string",
-          "description": "updated content of the question"
+          "description": "updated content of the answer"
         }
       }
     },
-    "QuestionEditResponse": {
+    "AnswerEditResponse": {
       "type": "object",
       "properties": {
         "id": {
           "type": "string",
-          "description": "question uuid"
+          "description": "answer uuid"
         },
         "status": {
           "type": "string",
-          "description": "status of the updated question"
+          "description": "status of the updated answer"
         }
       },
       "required": [
@@ -557,21 +452,43 @@
         "status"
       ]
     },
-    "QuestionDeleteResponse": {
+    "AnswerDeleteResponse": {
       "type": "object",
       "properties": {
         "id": {
           "type": "string",
-          "description": "question uuid"
+          "description": "answer uuid"
         },
         "status": {
           "type": "string",
-          "description": "status of the deleted question"
+          "description": "status of the deleted answer"
         }
       },
       "required": [
         "id",
         "status"
+      ]
+    },
+    "AnswerDetailsResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "answer uuid"
+        },
+        "questionContent": {
+          "type": "string",
+          "description": "Content of the question"
+        },
+        "answerContent": {
+          "type": "string",
+          "description": "Answer content"
+        }
+      },
+      "required": [
+        "id",
+        "questionContent",
+        "answerContent"
       ]
     }
   }
