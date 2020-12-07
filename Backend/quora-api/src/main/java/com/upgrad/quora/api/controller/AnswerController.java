@@ -1,9 +1,12 @@
 package com.upgrad.quora.api.controller;
 
+import com.upgrad.quora.api.model.AnswerEditRequest;
+import com.upgrad.quora.api.model.AnswerEditResponse;
 import com.upgrad.quora.api.model.AnswerRequest;
 import com.upgrad.quora.api.model.AnswerResponse;
 import com.upgrad.quora.service.business.AnswerBusiness;
 import com.upgrad.quora.service.entity.AnswerEntity;
+import com.upgrad.quora.service.exception.AnswerNotFoundException;
 import com.upgrad.quora.service.exception.AuthorizationFailedException;
 import com.upgrad.quora.service.exception.InvalidQuestionException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,5 +29,15 @@ public class AnswerController {
         final AnswerEntity createdAnswerEntity = answerBusiness.createAnswer(answerEntity, authorization.split("Bearer ")[1], questionId);
         final AnswerResponse answerResponse = new AnswerResponse().id(createdAnswerEntity.getUuid()).status("ANSWER CREATED");
         return new ResponseEntity<>(answerResponse, HttpStatus.CREATED);
+    }
+
+    @PutMapping(value = "/answer/edit/{answerId}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    private ResponseEntity<AnswerEditResponse> editAnswerContent(@RequestHeader("authorization") final String authorization, @PathVariable("answerId") final String answerId, @RequestBody final AnswerEditRequest answerEditRequest) throws AuthorizationFailedException, AnswerNotFoundException {
+        final AnswerEntity answerEntity = new AnswerEntity();
+        answerEntity.setAns(answerEditRequest.getContent());
+
+        final AnswerEntity createdAnswerEntity = answerBusiness.editAAnswer(answerEntity, authorization.split("Bearer ")[1], answerId);
+        final AnswerEditResponse answerEditResponse = new AnswerEditResponse().id(createdAnswerEntity.getUuid()).status("ANSWER EDITED");
+        return new ResponseEntity<>(answerEditResponse, HttpStatus.OK);
     }
 }
