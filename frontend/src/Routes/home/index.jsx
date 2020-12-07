@@ -6,6 +6,6 @@ export const Home = () => {
   return getHeader().authorization === "" ? (
     <Redirect to="/login" />
   ) : (
-    <div></div>
+    <div>Home</div>
   );
 };

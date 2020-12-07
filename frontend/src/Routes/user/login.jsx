@@ -10,14 +10,15 @@ import {
   Container,
   OutlinedInput,
   FormControl,
+  FormControlLabel,
+  Checkbox,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
-import { Grid, FormControlLabel, Checkbox } from "@material-ui/core";
 
 import { profile, signin } from "../../Services/user";
 import { setAuthenticate, setTokenNId, setUserData } from "../../Data/userData";
-import { getError, setError } from "../../Data/error";
+import { getError } from "../../Data/error";
 import { Error } from "../../Components/error";
 
 const useStyles = makeStyles((theme) => ({
@@ -147,7 +148,7 @@ export const Login = () => {
       {values.passwordError && (
         <div className={classes.error}>Password required</div>
       )}
-      {getError().code !== "" ? <Error /> : <div></div>}
+      {getError().code !== "" ? <Error /> : <div />}
     </Container>
   );
 };
