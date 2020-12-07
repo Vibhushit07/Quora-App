@@ -85,4 +85,25 @@ public class QuestionBusiness {
             }
         }
     }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    public QuestionEntity deleteAQuestion(final String authToken, final String quesId) throws AuthorizationFailedException, InvalidQuestionException {
+        UserAuthEntity userAuthEntity = userDao.getUserAuthByAccessToken(authToken);
+
+        if(userAuthEntity == null) {
+            throw new AuthorizationFailedException("ATHR-001", "User has not signed in");
+        } else if(userAuthEntity.getLogoutAt() != null) {
+            throw new AuthorizationFailedException("ATHR-002", "User is signed out. Sign in first to get all questions");
+        } else {
+            QuestionEntity questionEntity1 = questionDao.getQuestionByUuid(quesId);
+
+            if(questionEntity1 == null) {
+                throw new InvalidQuestionException("QUES-001", "Entered question uuid does not exist");
+            } else if(questionEntity1.getUser() != userAuthEntity.getUser()) {
+                throw new AuthorizationFailedException("ATHR-003", "Only the question owner can edit the question");
+            } else {
+                return questionDao.deleteQuestion(questionEntity1);
+            }
+        }
+    }
 }
