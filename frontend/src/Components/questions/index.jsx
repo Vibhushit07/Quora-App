@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
   container: {
     margin: "4vw",
     padding: "2vw",
-    width: "60vw",
+    width: "90%",
   },
   hr: {
     width: "95%",
@@ -49,6 +49,7 @@ export const Questions = () => {
             <h1
               className={classes.title}
               onClick={() => handleClick(question.id)}
+              title="View Answers"
             >
               {index + 1}. {question.title}
             </h1>

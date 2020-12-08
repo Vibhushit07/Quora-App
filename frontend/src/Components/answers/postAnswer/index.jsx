@@ -14,6 +14,10 @@ const useStyles = makeStyles((theme) => ({
   container: {
     textAlign: "center",
   },
+  questions: {
+    width: "90%",
+    padding: "2vw 0 0 3vw",
+  },
 }));
 
 export const PostAnswer = (props) => {
@@ -51,8 +55,10 @@ export const PostAnswer = (props) => {
 
   return (
     <div className={classes.container}>
-      <h1>{question[0].title}</h1>
-      <p>{question[0].content}</p>
+      <div className={classes.questions}>
+        <h1>{question[0].title}</h1>
+        <p>{question[0].content}</p>
+      </div>
       <Content setData={setAns} label={{ initial: "Answer" }} />
       <br /> <br />
       <Button
