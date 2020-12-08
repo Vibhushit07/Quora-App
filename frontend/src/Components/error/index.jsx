@@ -1,12 +1,42 @@
 import React from "react";
-import { getError } from "../../Data/error";
+import {
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Button,
+} from "@material-ui/core";
+
+import { getError, setError } from "../../Data/error";
 
 export const Error = () => {
-  console.log(getError());
+  const [open, setOpen] = React.useState(true);
+
+  const handleClose = () => {
+    setError({ code: "", message: "" });
+    setOpen(false);
+  };
+
   return (
     <div>
-      <h2>{getError().code}</h2>
-      <h2>{getError().message}</h2>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="max-width-dialog-title"
+      >
+        <DialogTitle id="max-width-dialog-title">Error</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            {getError().code} {getError().message}
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 };
