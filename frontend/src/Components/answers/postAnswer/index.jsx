@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router";
 
 import { Button } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 
 import { getQuestionById } from "../../../Data/questions";
 import { editAnswer, postAnswer } from "../../../Services/answer";
@@ -9,7 +10,14 @@ import { Content } from "../../content";
 import { getError, setError } from "../../../Data/error";
 import { Error } from "../../error";
 
+const useStyles = makeStyles((theme) => ({
+  container: {
+    textAlign: "center",
+  },
+}));
+
 export const PostAnswer = (props) => {
+  const classes = useStyles();
   const [answer, setAnswer] = useState({
     content: "",
   });
@@ -42,10 +50,10 @@ export const PostAnswer = (props) => {
   };
 
   return (
-    <div>
+    <div className={classes.container}>
       <h1>{question[0].title}</h1>
       <p>{question[0].content}</p>
-      <Content setData={setAns} />
+      <Content setData={setAns} label={{ initial: "Answer" }} />
       <br /> <br />
       <Button
         variant="contained"

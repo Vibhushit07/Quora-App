@@ -59,7 +59,10 @@ export const PostQuestion = (props) => {
     <div className={classes.container}>
       <Title setData={setData} />
       <br /> <br />
-      <Content setData={setData} />
+      <Content
+        setData={setData}
+        label={{ initial: "Description of Title", final: "Question" }}
+      />
       <br /> <br />
       <Button
         variant="contained"

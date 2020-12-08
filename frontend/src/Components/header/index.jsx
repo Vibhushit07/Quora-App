@@ -13,7 +13,7 @@ import {
 import { AccountCircle } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
 
-import { getHeader, resetHeader } from "../../Data/userData";
+import { getHeader, resetHeader, getUserData } from "../../Data/userData";
 import { signout } from "../../Services/user";
 import { getError, setError } from "../../Data/error";
 import { Error } from "../error";
@@ -25,10 +25,16 @@ const useStyles = makeStyles((theme) => ({
   title: {
     color: "white",
     textDecoration: "none",
+    fontSize: "25px",
   },
   button: {
     color: "white",
     backgroundColor: "black",
+  },
+  name: {
+    textAlign: "center",
+    marginLeft: "15vw",
+    fontSize: "22px",
   },
 }));
 
@@ -113,6 +119,11 @@ export const Header = () => {
             </NavLink>
           </Typography>
 
+          <div className={classes.name}>
+            {getUserData().first_name
+              ? `Welcome ${getUserData().first_name}`
+              : ""}
+          </div>
           <div className={classes.grow} />
           <Button
             variant="contained"
