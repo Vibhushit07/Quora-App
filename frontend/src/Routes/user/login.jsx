@@ -10,15 +10,18 @@ import {
   Container,
   OutlinedInput,
   FormControl,
+  FormControlLabel,
+  Checkbox,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
-import {  Grid, FormControlLabel, Checkbox } from '@material-ui/core';
 
-import { profile, signin } from "../../Services/user";
-import { setAuthenticate, setTokenNId, setUserData } from "../../Data/userData";
-import { getError, setError } from "../../Data/error";
 import { Error } from "../../Components/error";
+import { profile, signin } from "../../Services/user";
+import { getUserQuestions, getAllQuestions } from "../../Services/question";
+import { setUserQuestion, setQuestions } from "../../Data/questions";
+import { setAuthenticate, setTokenNId, setUserData } from "../../Data/userData";
+import { getError } from "../../Data/error";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -33,13 +36,12 @@ const useStyles = makeStyles((theme) => ({
     color: "red",
     fontStyle: "oblique",
   },
+  checkBox: {
+    textAlign: "center",
+  },
 }));
 
 export const Login = () => {
-  // setError({
-  //   code: "",
-  //   message: "",
-  // });
   const classes = useStyles();
   const history = useHistory();
   const [values, setValues] = useState({
@@ -75,12 +77,12 @@ export const Login = () => {
       setValues({ ...values, passwordError: true });
     } else {
       setAuthenticate();
-      // const resp = ;
       if (setTokenNId(await signin())) {
-
-        history.push("/");
-
+        // setQuestions(await getAllQue());
+        setQuestions(await getAllQuestions());
         setUserData(await profile());
+        setUserQuestion(await getUserQuestions());
+        history.push("/");
       }
     }
   };
@@ -97,7 +99,8 @@ export const Login = () => {
           error={values.usernameError}
           required
         />
-        <br /><br />
+        <br />
+        <br />
         <FormControl variant="outlined" className={classes.textField} required>
           <InputLabel htmlFor="password">Password</InputLabel>
           <OutlinedInput
@@ -117,19 +120,14 @@ export const Login = () => {
               </InputAdornment>
             }
           />
-          <br/>
-         <Grid container alignItems="center" justify="space-between">
-                        <Grid item>
-                            <FormControlLabel control={
-                                <Checkbox
-                                    color="primary"
-                                />
-                            } label="Remember me" />
-                            </Grid>
-                            
-                        </Grid>
         </FormControl>
-        <br /><br />
+        <br />
+        <FormControlLabel
+          control={<Checkbox color="primary" />}
+          label="Remember me"
+        />
+        <br />
+        <br />
         <Button
           variant="contained"
           color="primary"
@@ -137,8 +135,15 @@ export const Login = () => {
           onClick={submit}
         >
           Sign In
-        </Button> <br /><br />
-        <div>Not Registered ? <NavLink to="/signup"><b>Sign up now</b> </NavLink></div>
+        </Button>{" "}
+        <br />
+        <br />
+        <div>
+          Not Registered ?{" "}
+          <NavLink to="/user/signup">
+            <b>Sign up now</b>{" "}
+          </NavLink>
+        </div>
       </form>
       <br />
       {values.usernameError && (
@@ -147,7 +152,7 @@ export const Login = () => {
       {values.passwordError && (
         <div className={classes.error}>Password required</div>
       )}
-      {getError().code !== "" ? <Error /> : <div></div>}
+      {getError().code !== "" ? <Error /> : <div />}
     </Container>
   );
 };

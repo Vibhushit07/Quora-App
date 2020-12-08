@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory , NavLink} from "react-router-dom";
+import { useHistory, NavLink } from "react-router-dom";
 
 import {
   TextField,
@@ -34,13 +34,13 @@ export const Signup = () => {
   const classes = useStyles();
   const history = useHistory();
   const [values, setValues] = useState({
-    firstName: "",
-    lastName: "",
-    userName: "",
-    emailAddress: "",
+    first_name: "",
+    last_name: "",
+    user_name: "",
+    email_address: "",
     password: "",
     dob: "",
-    contactNumber: "",
+    contact_number: "",
     showPassword: false,
     usernameError: false,
     passwordError: false,
@@ -83,7 +83,7 @@ export const Signup = () => {
 
   return (
     <div className={classes.container}>
-        <br/>
+      <br />
       <h1>Create Account</h1>
       <form>
         <TextField
@@ -91,7 +91,7 @@ export const Signup = () => {
           label="First Name"
           variant="outlined"
           size="small"
-          onChange={handleChange("firstName")}
+          onChange={handleChange("first_name")}
           required
         />
         <br /> <br />
@@ -100,7 +100,7 @@ export const Signup = () => {
           label="Last Name"
           variant="outlined"
           size="small"
-          onChange={handleChange("lastName")}
+          onChange={handleChange("last_name")}
         />
         <br /> <br />
         <TextField
@@ -108,7 +108,7 @@ export const Signup = () => {
           label="Username"
           variant="outlined"
           size="small"
-          onChange={handleChange("userName")}
+          onChange={handleChange("user_name")}
           required
         />
         <br /> <br />
@@ -118,7 +118,7 @@ export const Signup = () => {
           type="email"
           variant="outlined"
           size="small"
-          onChange={handleChange("emailAddress")}
+          onChange={handleChange("email_address")}
           required
         />
         <br /> <br />
@@ -164,7 +164,7 @@ export const Signup = () => {
           variant="outlined"
           size="small"
           InputLabelProps={{ shrink: true }}
-          onChange={handleChange("contactNumber")}
+          onChange={handleChange("contact_number")}
         />
         <br /> <br />
         <Button
@@ -176,7 +176,12 @@ export const Signup = () => {
           Signup
         </Button>
         <br /> <br />
-        <div><i>Already have an account </i> <NavLink to="/login"><b>Login</b></NavLink></div>
+        <div>
+          <i>Already have an account </i>{" "}
+          <NavLink to="/user/login">
+            <b>Login</b>
+          </NavLink>
+        </div>
       </form>
       {values.firstNameError && (
         <div className={classes.error}>First name required</div>

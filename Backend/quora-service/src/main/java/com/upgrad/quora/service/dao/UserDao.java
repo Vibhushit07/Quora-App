@@ -72,27 +72,5 @@ public class UserDao {
         }
     }
 
-    public UserAuthEntity getUserAuthByAccessTokenByUuid(String uuid) {
-        try{
-            return entityManager
-                    .createNamedQuery("userAuthByUuid", UserAuthEntity.class)
-                    .setParameter("uuid", uuid)
-                    .getSingleResult();
-        } catch (NoResultException nre) {
-            return null;
-        }
-    }
-
-    public UserAuthEntity getUserAuthByAccessTokenByUser(UserEntity user) {
-        try{
-            return entityManager
-                    .createNamedQuery("userAuthByUser", UserAuthEntity.class)
-                    .setParameter("user", user)
-                    .getSingleResult();
-        } catch (NoResultException nre) {
-            return null;
-        }
-    }
-
     public UserAuthEntity updateUserAuth(UserAuthEntity userAuthEntity) { return entityManager.merge(userAuthEntity); }
 }
