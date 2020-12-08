@@ -26,3 +26,15 @@ export const editAnswer = async (answerId, answer) => {
         .then(response => { return response.json(); })
         .catch(err => alert(err))
 }
+
+export const deleteAnswer = async (answerId) => {
+    return await fetch(`/api/answer/delete/${answerId}`, {
+        method: 'delete',
+        headers: {
+            'Content-Type': 'application/json',
+            'authorization': getHeader().authorization
+        },
+    })
+        .then(response => response.json())
+        .catch(err => err.json())
+}
