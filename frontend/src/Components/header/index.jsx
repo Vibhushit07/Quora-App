@@ -60,7 +60,7 @@ export const Header = () => {
       setError(response);
     } else {
       resetHeader();
-      history.push("/login");
+      history.push("/user/login");
     }
   };
 
@@ -90,7 +90,7 @@ export const Header = () => {
             <NavLink to="/user/profile">Profile</NavLink>
           </MenuItem>
           <MenuItem onClick={handleMenuClose}>
-            <NavLink to="/user/questions">My Questions</NavLink>
+            <NavLink to="/user/question">My Questions</NavLink>
           </MenuItem>
           <MenuItem onClick={handleSignout}>Signout</MenuItem>
           {getError().code !== "" ? <Error /> : <div />}

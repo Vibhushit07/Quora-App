@@ -18,9 +18,9 @@ function App() {
         <Header />
         <Switch>
           <Route exact path='/' render={() => <Home />} />
-          <Route exact path='/signup' render={() => <Signup />} />
-          <Route exact path='/login' render={() => <Login />} />
-          <Route exact path='/profile' render={() => <Profile />} />
+          <Route exact path='/user/signup' render={() => <Signup />} />
+          <Route exact path='/user/login' render={() => <Login />} />
+          <Route exact path='/user/profile' render={() => <Profile />} />
           <Route exact path='/question/:operation/:id?' render={(props) => <PostQuestion {...props} />} />
           <Route exact path='/user/question' render={() => <UserQuestions />} />
           <Route exact path='/answer/:operation/:id?' render={(props) => <Answer {...props} />} />

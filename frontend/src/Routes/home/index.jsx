@@ -6,7 +6,7 @@ import { Questions } from "../../Components/questions";
 
 export const Home = () => {
   return getHeader().authorization === "" ? (
-    <Redirect to="/login" />
+    <Redirect to="/user/login" />
   ) : (
     <Questions />
   );

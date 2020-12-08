@@ -36,21 +36,21 @@ export const PostQuestion = (props) => {
 
   const submit = async () => {
     if (props.match.params.operation === "post") {
-      const response = postQuestion(question);
+      const response = await postQuestion(question);
       if (response.code !== undefined) {
         setError(response);
       } else {
-        setQuestions(await getAllQuestions());
-        setUserQuestion(await getUserQuestions());
+        await setQuestions(await getAllQuestions());
+        await setUserQuestion(await getUserQuestions());
         history.push("/");
       }
     } else {
-      const response = editQuestion(props.match.params.id, question);
+      const response = await editQuestion(props.match.params.id, question);
       if (response.code !== undefined) {
         setError(response);
       } else {
         setUserQuestion(await getUserQuestions());
-        history.push("/user/questions");
+        history.push("/user/question");
       }
     }
   };
