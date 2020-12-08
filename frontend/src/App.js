@@ -8,6 +8,8 @@ import { Login } from './Routes/user/login';
 import { Profile } from './Routes/user/profile';
 import { Home } from './Routes/home';
 import { UserQuestions } from './Routes/user/userQuestions';
+import { PostQuestion } from './Routes/postQuestion';
+import { Answer } from './Routes/answer';
 
 function App() {
   return (
@@ -21,6 +23,7 @@ function App() {
           <Route exact path='/user/profile' render={() => <Profile />} />
           <Route exact path='/user/questions' render={() => <UserQuestions />} />
           <Route exact path='/question/:operation/:id?' render={(props) => <PostQuestion {...props} />} />
+          <Route exact path='/answer/:operation/:id?' render={(props) => <Answer {...props} />} />
           <Redirect to='/' render={() => <Home />} />
         </Switch>
       </BrowserRouter>

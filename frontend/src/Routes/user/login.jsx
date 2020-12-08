@@ -18,8 +18,8 @@ import { Visibility, VisibilityOff } from "@material-ui/icons";
 
 import { Error } from "../../Components/error";
 import { profile, signin } from "../../Services/user";
-import { getUserQuestions } from "../../Services/question";
-import { setUserQuestion } from "../../Data/questions";
+import { getUserQuestions, getAllQuestions } from "../../Services/question";
+import { setUserQuestion, setQuestions } from "../../Data/questions";
 import { setAuthenticate, setTokenNId, setUserData } from "../../Data/userData";
 import { getError } from "../../Data/error";
 
@@ -78,6 +78,7 @@ export const Login = () => {
     } else {
       setAuthenticate();
       if (setTokenNId(await signin())) {
+        // setQuestions(await getAllQue());
         setQuestions(await getAllQuestions());
         setUserData(await profile());
         setUserQuestion(await getUserQuestions());

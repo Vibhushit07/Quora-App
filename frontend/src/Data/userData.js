@@ -1,3 +1,5 @@
+import { setError } from "./error";
+
 const header = {
     authenticate: "",
     authorization: ""
@@ -19,11 +21,13 @@ export const getUserData = () => data;
 export const setUserData = (userData) => data = { ...data, ...userData };
 
 export const setTokenNId = async (response) => {
-    if (response.code !== undefined) {
-        alert(`Code: ${response.code}\nMessage: ${response.message}`);
+    if (response.code) {
+        setError(response);
+        return false;
     } else {
         header.authorization = 'Bearer ' + response.access_token;
         data.userId = response.id;
+        return true;
     }
 }
 
