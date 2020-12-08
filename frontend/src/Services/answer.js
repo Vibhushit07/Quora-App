@@ -38,3 +38,15 @@ export const deleteAnswer = async (answerId) => {
         .then(response => response.json())
         .catch(err => err.json())
 }
+
+export const getAnswersOfQuestion = async () => {
+    return await fetch('/api/answer/all/' + getQuestionId(), {
+        method: 'get',
+        headers: {
+            'Content-Type': 'application/json',
+            'authorization': getHeader().authorization
+        }
+    })
+        .then(response => { return response.json(); })
+        .catch(err => alert(err))
+}
