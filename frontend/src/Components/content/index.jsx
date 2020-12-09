@@ -3,14 +3,14 @@ import React, { useState } from "react";
 import { TextField } from "@material-ui/core";
 
 export const Content = (props) => {
-  const [label, setLabel] = useState("Description of Title");
+  const [label, setLabel] = useState(props.label.initial);
 
   const handleClick = () => {
-    setLabel("Question");
+    setLabel(props.label.final ?? "Answer");
   };
 
   const handleBlur = () => {
-    setLabel("Description of Title");
+    setLabel(props.label.initial);
   };
 
   const handleChange = (event) => {
