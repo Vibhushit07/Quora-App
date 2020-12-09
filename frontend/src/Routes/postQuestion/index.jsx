@@ -20,6 +20,10 @@ const useStyles = makeStyles((theme) => ({
   container: {
     textAlign: "center",
   },
+  button: {
+    color: "#ffffff",
+    backgroundColor: "#000000",
+  },
 }));
 
 export const PostQuestion = (props) => {
@@ -66,7 +70,7 @@ export const PostQuestion = (props) => {
       <br /> <br />
       <Button
         variant="contained"
-        color="primary"
+        className={classes.button}
         disableElevation
         onClick={submit}
       >

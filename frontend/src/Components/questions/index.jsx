@@ -23,6 +23,10 @@ const useStyles = makeStyles((theme) => ({
   title: {
     cursor: "pointer",
   },
+  buttons: {
+    color: "#ffffff",
+    backgroundColor: "#000000",
+  },
 }));
 
 export const Questions = () => {
@@ -57,7 +61,7 @@ export const Questions = () => {
             <div className={classes.button}>
               <Button
                 variant="contained"
-                color="primary"
+                className={classes.buttons}
                 disableElevation
                 onClick={() => submit(question.id)}
               >

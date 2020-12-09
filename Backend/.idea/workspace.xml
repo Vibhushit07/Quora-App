@@ -2,7 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="47a15d9d-c79e-46a9-bbbf-df38ac55657d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/quora-db/src/main/resources/sql/quora_test.sql" beforeDir="false" afterPath="$PROJECT_DIR$/quora-db/src/main/resources/sql/quora_test.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/.eslintcache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/Components/answers/postAnswer/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/Components/answers/postAnswer/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/Components/header/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/Components/header/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/Components/questions/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/Components/questions/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/Routes/postQuestion/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/Routes/postQuestion/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/Routes/user/login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/Routes/user/login.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/Routes/user/signup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/Routes/user/signup.jsx" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

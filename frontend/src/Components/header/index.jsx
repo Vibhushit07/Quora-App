@@ -28,8 +28,8 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "25px",
   },
   button: {
-    color: "white",
-    backgroundColor: "black",
+    color: "#ffffff",
+    backgroundColor: "#000000",
   },
   name: {
     textAlign: "center",

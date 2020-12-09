@@ -33,11 +33,15 @@ const useStyles = makeStyles((theme) => ({
     margin: "5px",
   },
   error: {
-    color: "red",
+    color: "#cc0000",
     fontStyle: "oblique",
   },
   checkBox: {
     textAlign: "center",
+  },
+  button: {
+    color: "#ffffff",
+    backgroundColor: "#000000",
   },
 }));
 
@@ -78,7 +82,6 @@ export const Login = () => {
     } else {
       setAuthenticate();
       if (setTokenNId(await signin())) {
-        // setQuestions(await getAllQue());
         setQuestions(await getAllQuestions());
         setUserData(await profile());
         setUserQuestion(await getUserQuestions());
@@ -130,7 +133,7 @@ export const Login = () => {
         <br />
         <Button
           variant="contained"
-          color="primary"
+          className={classes.button}
           disableElevation
           onClick={submit}
         >

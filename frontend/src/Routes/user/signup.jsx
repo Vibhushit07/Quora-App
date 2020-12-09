@@ -25,8 +25,12 @@ const useStyles = makeStyles((theme) => ({
     width: "250px",
   },
   error: {
-    color: "red",
+    color: "#cc0000",
     fontStyle: "oblique",
+  },
+  button: {
+    color: "#ffffff",
+    backgroundColor: "#000000",
   },
 }));
 
@@ -169,7 +173,7 @@ export const Signup = () => {
         <br /> <br />
         <Button
           variant="contained"
-          color="primary"
+          className={classes.button}
           disableElevation
           onClick={submit}
         >

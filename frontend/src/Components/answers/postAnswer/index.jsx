@@ -18,6 +18,10 @@ const useStyles = makeStyles((theme) => ({
     width: "90%",
     padding: "2vw 0 0 3vw",
   },
+  button: {
+    color: "#ffffff",
+    backgroundColor: "#000000",
+  },
 }));
 
 export const PostAnswer = (props) => {
@@ -63,7 +67,7 @@ export const PostAnswer = (props) => {
       <br /> <br />
       <Button
         variant="contained"
-        color="primary"
+        className={classes.button}
         disableElevation
         onClick={submit}
       >
