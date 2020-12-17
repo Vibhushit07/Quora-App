@@ -31,7 +31,7 @@ export const setTokenNId = async (response) => {
     }
 }
 
-export const setAuthenticate = () => {
-    const user = JSON.parse(window.localStorage.getItem('QA-App'));
-    header.authenticate = "Basic " + Buffer.from(user.username + ":" + user.password).toString("base64");
+export const setAuthenticate = ({ username, password }) => {
+    // const user = JSON.parse(window.localStorage.getItem('QA-App'));
+    header.authenticate = "Basic " + Buffer.from(username + ":" + password).toString("base64");
 }

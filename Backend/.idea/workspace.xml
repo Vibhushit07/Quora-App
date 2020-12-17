@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="47a15d9d-c79e-46a9-bbbf-df38ac55657d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/.eslintcache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/Components/answers/postAnswer/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/Components/answers/postAnswer/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/Components/header/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/Components/header/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/Components/questions/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/Components/questions/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/Routes/postQuestion/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/Routes/postQuestion/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/Routes/user/login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/Routes/user/login.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/Routes/user/signup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/Routes/user/signup.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/Routes/user/userQuestions.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/Routes/user/userQuestions.jsx" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -87,7 +80,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538752844056" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Q &amp; A/Quora-App/Backend" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
