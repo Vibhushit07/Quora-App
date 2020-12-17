@@ -80,7 +80,7 @@ export const Login = () => {
     } else if (values.password === "") {
       setValues({ ...values, passwordError: true });
     } else {
-      setAuthenticate();
+      setAuthenticate({ username: values.userName, password: values.password });
       if (setTokenNId(await signin())) {
         setQuestions(await getAllQuestions());
         setUserData(await profile());
