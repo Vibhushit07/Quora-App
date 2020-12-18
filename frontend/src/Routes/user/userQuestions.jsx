@@ -67,7 +67,7 @@ export const UserQuestions = () => {
   return (
     <div className={classes.container}>
       {questions.length === 0 ? (
-        <h2 className={classes.title}>You have not posted any questions</h2>
+        <h2>You have not posted any questions</h2>
       ) : (
         questions.map((question, index) => (
           <div>
