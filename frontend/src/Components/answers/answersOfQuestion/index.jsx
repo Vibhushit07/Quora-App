@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router";
 
+import { Button } from "@material-ui/core";
 import { Edit, DeleteForever } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
 
 import { DialogBox } from "../../dialogBox";
 import { setDialogBox } from "../../../Data/dialogBox";
-import { getAnswers } from "../../../Data/answers";
+import { getAnswers, getQuestionId } from "../../../Data/answers";
 import { getQuestionById } from "../../../Data/questions";
 import { getAnswersOfQuestion, deleteAnswer } from "../../../Services/answer";
 import { getError, setError } from "../../../Data/error";
@@ -24,10 +25,17 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "80%",
   },
   margin: {
-    marginLeft: "5px",
+    marginLeft: "7px",
   },
   hr: {
     marginBottom: "5vh",
+  },
+  btn: {
+    cursor: "pointer",
+  },
+  btns: {
+    color: "#ffffff",
+    backgroundColor: "#000000",
   },
 }));
 
@@ -76,17 +84,29 @@ export const AnswersOfQuestion = () => {
         <div key={answer.id}>
           <div className={classes.button + " " + classes.padding}>
             <span
-              className={classes.margin}
+              className={classes.margin + " " + classes.btn}
+              title="Edit"
               onClick={() => history.push("/answer/edit/" + answer.id)}
             >
               <Edit />
             </span>
             <span
-              className={classes.margin}
+              className={classes.margin + " " + classes.btn}
               onClick={() => handleClick(answer.id)}
             >
               <DeleteForever />
             </span>
+            <Button
+              title="Post Answer"
+              variant="contained"
+              className={
+                classes.margin + " " + classes.btn + " " + classes.btns
+              }
+              disableElevation
+              onClick={() => history.push("/answer/post")}
+            >
+              Post Answer
+            </Button>
           </div>
           <p className={classes.padding}>
             {index + 1}. {answer.answerContent}
