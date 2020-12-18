@@ -80,40 +80,44 @@ export const AnswersOfQuestion = () => {
         <p>{question[0].content}</p>
       </div>
       <hr className={classes.hr} />
-      {answers.map((answer, index) => (
-        <div key={answer.id}>
-          <div className={classes.button + " " + classes.padding}>
-            <span
-              className={classes.margin + " " + classes.btn}
-              title="Edit"
-              onClick={() => history.push("/answer/edit/" + answer.id)}
-            >
-              <Edit />
-            </span>
-            <span
-              className={classes.margin + " " + classes.btn}
-              onClick={() => handleClick(answer.id)}
-            >
-              <DeleteForever />
-            </span>
-            <Button
-              title="Post Answer"
-              variant="contained"
-              className={
-                classes.margin + " " + classes.btn + " " + classes.btns
-              }
-              disableElevation
-              onClick={() => history.push("/answer/post")}
-            >
-              Post Answer
-            </Button>
+      {answers.length === 0 ? (
+        <h2>No answers have been posted for this question.</h2>
+      ) : (
+        answers.map((answer, index) => (
+          <div key={answer.id}>
+            <div className={classes.button + " " + classes.padding}>
+              <span
+                className={classes.margin + " " + classes.btn}
+                title="Edit"
+                onClick={() => history.push("/answer/edit/" + answer.id)}
+              >
+                <Edit />
+              </span>
+              <span
+                className={classes.margin + " " + classes.btn}
+                onClick={() => handleClick(answer.id)}
+              >
+                <DeleteForever />
+              </span>
+              <Button
+                title="Post Answer"
+                variant="contained"
+                className={
+                  classes.margin + " " + classes.btn + " " + classes.btns
+                }
+                disableElevation
+                onClick={() => history.push("/answer/post")}
+              >
+                Post Answer
+              </Button>
+            </div>
+            <p className={classes.padding}>
+              {index + 1}. {answer.answerContent}
+            </p>
+            <hr className={classes.hr} />
           </div>
-          <p className={classes.padding}>
-            {index + 1}. {answer.answerContent}
-          </p>
-          <hr className={classes.hr} />
-        </div>
-      ))}
+        ))
+      )}
       {getError().code !== "" ? <Error /> : <div />}
       <DialogBox open={open} accept={handleAccept} reject={handleReject} />
     </div>
