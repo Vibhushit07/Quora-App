@@ -65,7 +65,7 @@ export const Header = () => {
     if (response.code !== undefined) {
       setError(response);
     } else {
-      resetHeader();
+      await resetHeader();
       history.push("/user/login");
     }
   };
@@ -118,12 +118,6 @@ export const Header = () => {
               QA App
             </NavLink>
           </Typography>
-
-          <div className={classes.name}>
-            {getUserData().first_name
-              ? `Welcome ${getUserData().first_name}`
-              : ""}
-          </div>
           <div className={classes.grow} />
           <Button
             variant="contained"
