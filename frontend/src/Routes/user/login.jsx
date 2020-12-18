@@ -82,9 +82,9 @@ export const Login = () => {
     } else {
       setAuthenticate({ username: values.userName, password: values.password });
       if (setTokenNId(await signin())) {
-        setQuestions(await getAllQuestions());
-        setUserData(await profile());
-        setUserQuestion(await getUserQuestions());
+        await setQuestions(await getAllQuestions());
+        await setUserData(await profile());
+        await setUserQuestion(await getUserQuestions());
         history.push("/");
       }
     }
